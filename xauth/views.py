@@ -80,19 +80,28 @@ def login(request, template_name='registration/login.html',
     elif request.method == "POST":
         form = authentication_form(request, data=request.POST)
         if form.is_valid():
-            auth_login(request, form.get_user())
+            user = form.get_user()
+            auth_login(request, user)
             redirect_url = _get_login_redirect_url(request, redirect_to)
             # If the request is AJAX return with an appropriate response.
             if request.is_ajax():
                 if request.is_secure() or settings.DEBUG:
                     return JsonResponse({
-                        'user': form.get_user_id(),
+                        'user': {
+                            'id': user.id,
+                            'username': user.username,
+                            'email': user.email,
+                        },
                         'redirect': redirect_url,
                         'csrf_token': get_token(request),
                     })
                 else:
                     return JsonResponse({
-                        'user': form.get_user_id(),
+                        'user': {
+                            'id': user.id,
+                            'username': user.username,
+                            'email': user.email,
+                        },
                         'redirect': redirect_url,
                     })
             return HttpResponseRedirect(redirect_url)
