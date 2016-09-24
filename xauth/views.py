@@ -86,7 +86,7 @@ def login(request, template_name='registration/login.html',
             # If the request is AJAX return with an appropriate response.
             if request.is_ajax():
                 if request.is_secure() or settings.DEBUG:
-                    return JsonResponse({
+                    response = {
                         'user': {
                             'id': user.id,
                             'username': user.username,
@@ -94,16 +94,26 @@ def login(request, template_name='registration/login.html',
                         },
                         'redirect': redirect_url,
                         'csrf_token': get_token(request),
-                    })
+                    }
+                    try:
+                        response['user']['username'] = user.username
+                    except AttributeError:
+                        pass
+                    return JsonResponse(response)
                 else:
-                    return JsonResponse({
+                    response = {
                         'user': {
                             'id': user.id,
                             'username': user.username,
                             'email': user.email,
                         },
                         'redirect': redirect_url,
-                    })
+                    }
+                    try:
+                        response['user']['username'] = user.username
+                    except AttributeError:
+                        pass
+                    return JsonResponse(response)
             return HttpResponseRedirect(redirect_url)
         # If invalid form during AJAX then return an error.
         elif request.is_ajax():
