@@ -89,7 +89,6 @@ def login(request, template_name='registration/login.html',
                     response = {
                         'user': {
                             'id': user.id,
-                            'username': user.username,
                             'email': user.email,
                         },
                         'redirect': redirect_url,
@@ -104,7 +103,6 @@ def login(request, template_name='registration/login.html',
                     response = {
                         'user': {
                             'id': user.id,
-                            'username': user.username,
                             'email': user.email,
                         },
                         'redirect': redirect_url,
