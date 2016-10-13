@@ -13,7 +13,7 @@ from django.contrib.auth.forms import (
 )
 from django.contrib.auth.tokens import default_token_generator
 from django.contrib.sites.shortcuts import get_current_site
-from django.http import HttpResponseRedirect, QueryDict, JsonResponse
+from django.http import HttpResponseRedirect, QueryDict, JsonResponse, Http404
 from django.middleware.csrf import get_token
 from django.shortcuts import resolve_url
 from django.template.response import TemplateResponse
@@ -122,6 +122,8 @@ def login(request, template_name='registration/login.html',
     # (is this even possible?).
     elif request.is_ajax():
         return JsonResponse({'__all__': ['only POST']}, status=400)
+    elif getattr(settings, 'XAUTH_AJAX', False):
+        raise Http404
     else:
         form = authentication_form(request)
 
@@ -153,6 +155,8 @@ def logout(request, next_page=None,
     # If this is an AJAX request then return empty.
     if request.is_ajax():
         return JsonResponse({})
+    elif getattr(settings, 'XAUTH_AJAX', False):
+        raise Http404
 
     if next_page is not None:
         next_page = resolve_url(next_page)
