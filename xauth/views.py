@@ -24,7 +24,7 @@ from django.utils.http import is_safe_url, urlsafe_base64_decode
 from django.utils.six.moves.urllib.parse import urlparse, urlunparse
 from django.utils.translation import ugettext as _
 from django.views.decorators.cache import never_cache
-from django.views.decorators.csrf import csrf_protect
+from django.views.decorators.csrf import csrf_protect, csrf_exempt
 from django.views.decorators.debug import sensitive_post_parameters
 
 
@@ -58,7 +58,7 @@ def _get_login_redirect_url(request, redirect_to):
 
 @deprecate_current_app
 @sensitive_post_parameters()
-@csrf_protect
+@csrf_exempt
 @never_cache
 def login(request, template_name='registration/login.html',
           redirect_field_name=REDIRECT_FIELD_NAME,
@@ -67,6 +67,7 @@ def login(request, template_name='registration/login.html',
     """
     Displays the login form and handles the login action.
     """
+    import pdb; pdb.set_trace()
     redirect_to = request.POST.get(redirect_field_name, request.GET.get(redirect_field_name, ''))
 
     if redirect_authenticated_user and request.user.is_authenticated:
