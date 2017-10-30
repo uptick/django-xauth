@@ -67,7 +67,6 @@ def login(request, template_name='registration/login.html',
     """
     Displays the login form and handles the login action.
     """
-    import pdb; pdb.set_trace()
     redirect_to = request.POST.get(redirect_field_name, request.GET.get(redirect_field_name, ''))
 
     if redirect_authenticated_user and request.user.is_authenticated:
