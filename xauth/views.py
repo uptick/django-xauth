@@ -17,7 +17,7 @@ from django.http import HttpResponseRedirect, QueryDict, JsonResponse, Http404
 from django.middleware.csrf import get_token
 from django.shortcuts import resolve_url
 from django.template.response import TemplateResponse
-from django.core.urlresolvers import reverse
+from django.urls import reverse
 from django.utils.deprecation import RemovedInDjango20Warning
 from django.utils.encoding import force_text
 from django.utils.http import is_safe_url, urlsafe_base64_decode
