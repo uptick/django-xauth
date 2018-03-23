@@ -1,5 +1,7 @@
 # django-xauth
 
+[![PyPI version](https://badge.fury.io/py/django-xauth.svg)](https://badge.fury.io/py/django-xauth)
+
 Some simple AJAX authorisation endpoints for Django.
 
 ## Why?

@@ -1,14 +1,19 @@
-import os, sys
-from setuptools import setup, find_packages
+import os
+import re
+
+from setuptools import find_packages, setup
+
+with open('./xauth/__init__.py') as f:
+    exec(re.search(r'VERSION = .*', f.read(), re.DOTALL).group())
 
 setup(
     name='django-xauth',
-    version='0.1.0',
+    version=__version__,
     author='Luke Hodkinson',
-    author_email='furious.luke@gmail.com',
-    maintainer='Luke Hodkinson',
-    maintainer_email='furious.luke@gmail.com',
-    url='https://github.com/furious-luke/django-xauth',
+    author_email='luke.hodkinson@uptickhq.com',
+    maintainer='Uptick',
+    maintainer_email='dev@uptickhq.com',
+    url='https://github.com/uptick/django-xauth',
     description='A simple Django application for AJAX authorisation.',
     long_description=open(os.path.join(os.path.dirname(__file__), 'README.md')).read(),
     classifiers = [
@@ -16,6 +21,7 @@ setup(
         'Framework :: Django',
         'Framework :: Django :: 1.7',
         'Framework :: Django :: 1.8',
+        'Framework :: Django :: 2.0',
         'Intended Audience :: Developers',
         'License :: OSI Approved :: BSD License',
         'Natural Language :: English',
@@ -26,7 +32,8 @@ setup(
         'Programming Language :: Python :: 3',
         'Programming Language :: Python :: 3.3',
         'Programming Language :: Python :: 3.4',
-        'Programming Language :: Python :: 3.5'
+        'Programming Language :: Python :: 3.5',
+        'Programming Language :: Python :: 3.6'
     ],
     license='BSD',
     packages=find_packages(),
