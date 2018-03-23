@@ -1,6 +1,6 @@
 # django-xauth
 
-[![PyPI version](https://badge.fury.io/py/django-xauth.svg)](https://badge.fury.io/py/django-xauth)
+[![PyPI version](https://badge.fury.io/py/django-ajax-auth.svg)](https://badge.fury.io/py/django-ajax-auth)
 
 Some simple AJAX authorisation endpoints for Django.
 
@@ -17,7 +17,7 @@ login form should be rendered.
 `pip` is the easiest way to get the package:
 
 ```python
-pip install django-xauth
+pip install django-ajax-auth
 ```
 
 Add the package to your Django settings file:

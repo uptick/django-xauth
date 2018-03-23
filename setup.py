@@ -7,7 +7,7 @@ with open('./xauth/__init__.py') as f:
     exec(re.search(r'VERSION = .*', f.read(), re.DOTALL).group())
 
 setup(
-    name='django-xauth',
+    name='django-ajax-auth',
     version=__version__,
     author='Luke Hodkinson',
     author_email='luke.hodkinson@uptickhq.com',
